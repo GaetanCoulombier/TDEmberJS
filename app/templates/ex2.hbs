@@ -1,0 +1,19 @@
+{{page-title "Ex2"}}
+{{outlet}}
+<div class="container">
+<h1>Services</h1>
+  <h2>Choisissez les éléments à inclure</h2>
+  <h2>{{plural @model.countActive "Aucun service sélectionnés" "1 service sélectionnés" "services sélectionnés"}}</h2>
+    <ul class="list-group">
+      {{#each @model.products as |product|}}
+          <li class="list-group-item {{if product.active "active"}}" {{action "toggleActive" product}}>
+            <div class="d-flex justify-content-around">
+              {{product.name}}
+              ${{product.price}}
+            </div>
+          </li>
+      {{/each}}
+    </ul>
+  <h1>{{plural @model.total "Aucun service sélectionnés" "1 service sélectionnés" "services sélectionnés"}}</h1>
+</div>
+{{outlet}}
