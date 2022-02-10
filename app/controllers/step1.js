@@ -16,10 +16,10 @@ export default class Step1Controller extends Controller {
     this.includedItems_ = elements;
   }
 
-  @action add(source, dest, what) {
+  @action toggle(source, dest, what) {
     dest.pushObjects(what);
     source.removeObjects(what);
     this.dispoItems_ = [];
-      this.includedItems_ = [];
+    this.includedItems_ = [];
   }
 }
