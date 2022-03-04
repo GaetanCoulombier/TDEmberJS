@@ -1,0 +1,11 @@
+{{page-title "Update"}}
+<h2>
+  Modifier un contact
+</h2>
+<Input type="text" @value={{@model.nom}} />
+<Input type="text" @value={{@model.prenom}} />
+<Input type="email" @value={{@model.email}} />
+<button type="button" {{action "save" @model}}>
+  Enregistrer
+</button>
+{{outlet}}

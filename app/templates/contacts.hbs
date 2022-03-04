@@ -1,0 +1,61 @@
+{{page-title "TestNew"}}
+<div style="border: 1px dodgerblue solid; margin:3% 10% 3% 10%">
+  <h1 style="background-color: dodgerblue; color:white;">
+    Contacts ({{@model.contacts.length}})
+  </h1>
+  <div style="margin:2% 10% 2% 10%">
+    <table style="width:100%">
+      <thead>
+        <tr>
+          <th>
+            NOM
+          </th>
+          <th>
+            Prénom
+          </th>
+          <th>
+            Email
+          </th>
+          <th>
+            Options
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each @model.contacts as |contact|}}
+          <tr>
+            <td>
+              {{contact.nom}}
+            </td>
+            <td>
+              {{contact.prenom}}
+            </td>
+            <td>
+              {{contact.email}}
+            </td>
+            <td>
+              <LinkTo @route="contacts.update" @model={{contact}}>
+                Modifier...
+              </LinkTo>
+              <button class="btn btn-danger" type="button" {{action "delete" contact}}>
+                Supprimer
+              </button>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+  {{@model.deletedCount}} contact(s) supprimé(s)
+  <div>
+    <LinkTo @route="contacts.new" class="btn btn-primary">
+      Ajouter un contact...
+    </LinkTo>
+    <button {{action "cancelAll" @model.deleteds}}>
+      Annuler suppression
+    </button>
+  </div>
+</div>
+
+{{outlet}}
