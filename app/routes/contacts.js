@@ -20,19 +20,20 @@ export default class TestNewRoute extends Route {
     contact.save();
     //contact.rollbackAttributes();
   }
-*/
+  */
+
   @action delete(contact) {
     contact.deleteRecord();
   }
 
-  @action saveAll(contacts){
-    contacts.forEach((c)=>{
+  @action saveAll(contacts) {
+    contacts.forEach((c) => {
       c.save();
     });
   }
 
-  @action cancelAll(contacts){
-    contacts.forEach((c)=>{
+  @action cancelAll(contacts) {
+    contacts.forEach((c) => {
       c.rollbackAttributes();
     });
   }
