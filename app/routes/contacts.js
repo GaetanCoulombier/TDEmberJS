@@ -1,40 +1,36 @@
 import Route from '@ember/routing/route';
+import Contacts from '../classes/contacts';
 import { service } from '@ember/service';
 import { action } from '@ember/object';
-import ContactArray from '../classes/contact-array';
 
-export default class TestNewRoute extends Route {
+export default class ContactsRoute extends Route {
   @service store;
 
   model() {
-    return new ContactArray(this.store.findAll('contact'));
+    return new Contacts(this.store.findAll('contact'));
   }
 
-  /*
-  @action add(name, surname, mail) {
-    let contact = this.store.createRecord('contact', {
+  @action add(name) {
+    let c = this.store.createRecord('contact', {
       nom: name,
-      prenom: surname,
-      email: mail
     });
-    contact.save();
-    //contact.rollbackAttributes();
+    c.save();
   }
-  */
 
   @action delete(contact) {
     contact.deleteRecord();
   }
 
-  @action saveAll(contacts) {
+  @action cancelDeletion(contacts) {
     contacts.forEach((c) => {
-      c.save();
+      //Annulation de toutes les modifs dont la supp
+      c.rollbackAttributes();
     });
   }
 
-  @action cancelAll(contacts) {
+  @action confirmDeletion(contacts) {
     contacts.forEach((c) => {
-      c.rollbackAttributes();
+      c.save();
     });
   }
 }
