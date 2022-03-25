@@ -1,6 +1,6 @@
-import Route from '@ember/routing/route';
-import { service } from '@ember/service';
-import { action } from '@ember/object';
+import Route from "@ember/routing/route";
+import { service } from "@ember/service";
+import { action } from "@ember/object";
 
 export default class IndexRoute extends Route {
   @service userAuth;
@@ -13,17 +13,17 @@ export default class IndexRoute extends Route {
   @action login(user) {
     console.log(user.email);
     this.store
-      .query('employee', {
+      .query("employee", {
         filter: {
-          email: user.email,
-        },
+          email: user.email
+        }
       })
       .then((employees) => {
         if (employees.length) {
           let connected = employees.firstObject;
           if (connected.password && connected.password === user.password) {
             this.userAuth.login(connected);
-            this.transitionTo('board');
+            this.transitionTo("board");
           }
         }
       });
