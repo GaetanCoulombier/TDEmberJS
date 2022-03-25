@@ -13,4 +13,12 @@ export default class OrderModel extends Model {
   get count() {
     return this.orderdetails.length;
   }
+
+  get status() {
+    return this.status;
+  }
+
+  get toPay() {
+    return this.toPay;
+  }
 }
