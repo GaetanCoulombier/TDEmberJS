@@ -1,7 +1,5 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
-.idea
-
 # compiled output
 /dist/
 /tmp/
@@ -29,3 +27,5 @@
 /package.json.ember-try
 /package-lock.json.ember-try
 /yarn.lock.ember-try
+
+.idea/

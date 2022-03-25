@@ -1,5 +1,5 @@
-import Application from 'td2/app';
-import config from 'td2/config/environment';
+import Application from 'tds/app';
+import config from 'tds/config/environment';
 import * as QUnit from 'qunit';
 import { setApplication } from '@ember/test-helpers';
 import { setup } from 'qunit-dom';
