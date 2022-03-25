@@ -1,2 +1,66 @@
 {{page-title "Order"}}
+
+<a href="/board">
+  <button class="ui red button">Retour aux commandes a préparer</button>
+</a>
+
+<div class="ui inverted segment">
+  {{@model.user.name}} ({{@model.user.email}})
+</div>
+
+<span class="ui label">{{@model.dateCreation}}</span>
+<table class="ui celled table">
+  <thead>
+  <tr>
+    <th>Produit</th>
+    <th>Quantitée</th>
+    <th>Prix</th>
+    <th>Montant</th>
+    <th>Préparation</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  {{#each @model.orderdetails as |order|}}
+    <tr>
+      <td>{{ order.product.name }}</td>
+      <td>{{ order.quantity }}</td>
+      <td>{{ order.product.price }} €</td>
+      <td>{{ order.amount }} €</td>
+      <td>
+        <input type="checkbox" {{order.prepared}}>
+      </td>
+    </tr>
+  {{/each}}
+  </tbody>
+
+  <tfoot>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th>{{@model.amount}} €</th>
+    <th>{{@model.toPay}} €</th>
+  </tr>
+  </tfoot>
+</table>
+
+<h2>Produits préparés ({{@model.orderdetails.length}})</h2>
+{{#each @model.orderdetails as |order|}}
+  <td rowspan="2"><i class="briefcase icon"></i></td>
+  <td>
+    <tr>
+      {{order.product.name}}
+    </tr>
+    <tr>
+      {{order.product.price}} X {{order.quantity}}
+    </tr>
+  </td>
+  <div class="ui divider"></div>
+{{/each}}
+
+<a href="/board">
+  <button class="ui green button"><i class="check icon white"></i> Valider pour {{@model.toPay}} €</button>
+</a>
+
 {{outlet}}
